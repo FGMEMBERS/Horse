@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+ <sim>
+
+  <description>Horse</description>
+  <author>Marc Kraus :: Lake of Constance Hangar</author>
+  <status>alpha</status>
+  <version>0.7</version>
+  <flight-model>jsb</flight-model>
+  <aero>horse-jsb</aero>
+
+  <virtual-cockpit archive="y">true</virtual-cockpit>
+  <allow-toggle-cockpit archive="y">true</allow-toggle-cockpit>
+
+  <startup>
+   <splash-texture>Aircraft/Horse/splash.png</splash-texture>
+  </startup>
+
+  <sound>
+    <path>Aircraft/Horse/Sounds/horse-sound.xml</path>
+  </sound>
+
+  <model>
+   <path>Aircraft/Horse/Models/Horse.xml</path>
+    <livery>
+      <file type="string">white</file>
+    </livery>
+  </model> 
+  <chase-distance-m type="double" archive="y">25.0</chase-distance-m>
+
+  <multiplay n="0">
+    <generic n="0">     
+      <float n="0" alias="/controls/gear/move-feets"/>                          <!-- show the moving feets -->     
+      <float n="1" alias="/fdm/jsbsim/position/h-agl-ft"/>                      <!-- shadow in multiplayer -->
+      <int   n="0" alias="/controls/special/swimming"/> 
+    </generic>
+  </multiplay>
+
+  <hud>
+   <enable3d>false</enable3d>
+  </hud>
+
+  <help>
+    <key>
+      <name>j</name>
+      <desc>Jumping</desc>
+    </key>      
+    <key>
+      <name> > </name>
+      <desc>Switch swimming view</desc>
+    </key>
+  </help>
+	<menubar>
+		<default>
+			<menu n="10">
+				<label>Horse</label>
+					<enabled type="bool">true</enabled>
+					<item>
+						<label>Select coat</label>
+              <binding>
+                <command>nasal</command>
+                <script>aircraft.livery.dialog.toggle()</script>
+              </binding>
+					</item>
+			</menu>
+		</default>
+	</menubar>
+  <view n="0">
+   <internal archive="y">true</internal>
+   <config>
+    <limits>
+      <enabled archive="y" type="bool">false</enabled>
+    </limits>
+    <x-offset-m archive="y" type="double">0.0</x-offset-m>
+    <y-offset-m archive="y" type="double">1.6</y-offset-m>
+    <z-offset-m archive="y" type="double">0.15</z-offset-m>
+    <pitch-offset-deg>0.0</pitch-offset-deg>
+   </config>
+  </view>
+
+  <view n="1">
+   <config>
+    <target-z-offset-m archive="y" type="double">0.0</target-z-offset-m>
+   </config>
+  </view>
+
+  <view n="2">
+   <config>
+    <target-z-offset-m archive="y" type="double">0.0</target-z-offset-m>
+   </config>
+  </view>
+
+  <view n="3">
+   <config>
+    <target-z-offset-m archive="y" type="double">0.0</target-z-offset-m>
+   </config>
+  </view>
+
+  <view n="4">
+   <config>
+    <target-z-offset-m archive="y" type="double">0.0</target-z-offset-m>
+   </config>
+  </view>
+
+  <view n="5">
+   <config>
+    <target-z-offset-m archive="y" type="double">0.0</target-z-offset-m>
+   </config>
+  </view>
+
+  <view n="6">
+   <config>
+    <target-z-offset-m archive="y" type="double">0.0</target-z-offset-m>
+   </config>
+  </view>
+
+  <view n="100">
+    <name>Swimming View</name>
+    <internal>true</internal>
+    <type>lookfrom</type>
+    <config>
+      <limits>
+        <enabled archive="y" type="bool">false</enabled>
+      </limits>
+      <from-model type="bool">true</from-model>
+      <from-model-idx type="int">true</from-model-idx>
+      <x-offset-m type="double">  0.0 </x-offset-m>	<!-- Right -->
+      <y-offset-m type="double">  0.1 </y-offset-m>	<!-- Up    -->
+      <z-offset-m type="double">  0.15 </z-offset-m>	<!-- Back  -->
+      <pitch-offset-deg type="double"> 0 </pitch-offset-deg>
+    </config>
+  </view>
+ </sim>
+
+ <fdm>
+  <jsbsim>
+		<systems>
+			<crash-test>
+				<crashed type="bool">0</crashed>
+			</crash-test>
+		</systems>
+  </jsbsim>
+ </fdm>
+
+	<controls>
+    <gear n="0">
+      <brake-parking type="double">1</brake-parking>
+      <move-feets type="double">0.0</move-feets>
+    </gear>
+    <engines>
+      <engine n="0">
+        <magnetos>3</magnetos>
+      </engine>
+    </engines>
+    <special>
+      <swimming type="bool">false</swimming>
+      <singthesong type="bool">false</singthesong>
+      <push-me type="bool">true</push-me>
+    </special>
+	</controls>
+
+ <instrumentation>
+	  <radar>
+		  <name>radar</name>
+		  <number>0</number>
+		  <update-interval-sec>0</update-interval-sec>
+			<serviceable type="bool">true</serviceable>
+			<switch type="string" archive="y">on</switch>
+			<range type="double" archive="y">0.8</range>
+			<mode-control type="int" archive="y">2</mode-control>
+			<limit-deg type="double">10</limit-deg>
+
+			<mode type="string" archive="y">WX</mode>
+			<lightning type="bool" archive="y">true</lightning>
+			<display-mode type="string" archive="y">plan</display-mode>
+
+			<display-controls>
+				<WX type="bool" archive="y">false</WX>
+				<data type="bool" archive="y">true</data>
+				<pos type="bool" archive="y">true</pos>
+			</display-controls>
+		</radar>
+ </instrumentation>
+
+  <engines>
+    <engine n="0">
+      <fuel-flow_pph type="float">0</fuel-flow_pph>
+      <running>true</running>
+      <rpm type="double">20</rpm>
+    </engine>
+    <!-- this engine for animate the horse over multiplayer :-) -->
+    <engine n="1">
+      <rpm type="double">1</rpm>
+    </engine>
+  </engines>
+
+
+<input>
+	<keyboard>
+      <key n="106">
+        <name>j</name>
+        <desc>Jump</desc>
+        <binding>
+          <command>nasal</command>
+          <script>horse.jump()</script>
+        </binding>
+      </key>
+      <key n="60">
+        <name> > </name>
+        <desc>View for swimming</desc>
+        <binding>
+          <command>nasal</command>
+          <script>horse.changeView(8);</script>
+        </binding>
+      </key>
+	</keyboard>
+</input>
+ <nasal>
+		<horse>
+			<file>Aircraft/Horse/Nasal/horse.nas</file>
+		</horse>
+ </nasal>
+</PropertyList>
+
+
+
+

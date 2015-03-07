@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+ <path>feets.ac</path>
+
+  <animation>
+    <type>material</type>
+    <object-name>fr.1</object-name>
+    <object-name>fr.2</object-name>
+    <object-name>fr.3</object-name>
+    <object-name>fl.1</object-name>
+    <object-name>fl.2</object-name>
+    <object-name>fl.3</object-name>
+    <object-name>br.0</object-name>
+    <object-name>br.1</object-name> 
+    <object-name>br.2</object-name> 
+    <object-name>br.3</object-name> 
+    <object-name>bl.0</object-name>
+    <object-name>bl.1</object-name> 
+    <object-name>bl.2</object-name> 
+    <object-name>bl.3</object-name> 
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>texture</texture-prop>
+    <texture>white.png</texture>
+  </animation>
+
+</PropertyList>
