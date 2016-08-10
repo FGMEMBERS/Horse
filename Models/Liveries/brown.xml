@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--###################################################################################
+		Lake of Constance Hangar :: M.Kraus
+		Horse for Flightgear August 2016
+		This file is licenced under the terms of the GNU General Public Licence V2 or later
+		###################################################################################
+-->
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">brown</name>
+            <texture>Liveries/brown.png</texture>
+        </livery>
+    </model>
+</sim>
+</PropertyList>

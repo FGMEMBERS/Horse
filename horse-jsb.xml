@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<!--###################################################################################
+		Lake of Constance Hangar :: M.Kraus
+		Horse for Flightgear August 2016
+		This file is licenced under the terms of the GNU General Public Licence V2 or later
+		###################################################################################
+-->
+<?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
+
+<fdm_config name="Horse" version="2.0" release="BETA"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+
+    <fileheader>
+        <author>Marc Kraus :: Lake of Constance Hangar</author>
+        <filecreationdate> 2012-7-22 </filecreationdate>
+        <version> 0.7 </version>
+        <description> Horse </description>
+    </fileheader>
+
+    <metrics>
+        <wingarea unit="FT2"> 235 </wingarea>
+        <wingspan unit="FT"> 37.1 </wingspan>
+        <wing_incidence unit="DEG"> 1.00 </wing_incidence>
+        <chord unit="FT"> 6.6 </chord>
+        <htailarea unit="FT2"> 41 </htailarea>
+        <htailarm unit="FT"> 15 </htailarm>
+        <vtailarea unit="FT2"> 20 </vtailarea>
+        <vtailarm unit="FT"> 15 </vtailarm>
+        <location name="AERORP" unit="IN">
+            <x> 98 </x>
+            <y> 0 </y>
+            <z> -26.5 </z>
+        </location>
+        <location name="EYEPOINT" unit="IN">
+            <x> 116 </x>
+            <y> 0 </y>
+            <z> 30 </z>
+        </location>
+        <location name="VRP" unit="IN">
+            <x> 0 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </location>
+    </metrics>
+
+    <mass_balance>
+        <ixx unit="SLUG*FT2"> 4015 </ixx>
+        <iyy unit="SLUG*FT2"> 4600 </iyy>
+        <izz unit="SLUG*FT2"> 3050 </izz>
+        <emptywt unit="LBS"> 3550 </emptywt>
+        <location name="CG" unit="IN">
+            <x> 98 </x>
+            <y> 0 </y>
+            <z> -9 </z>
+        </location>
+    </mass_balance>
+
+
+    <ground_reactions>
+       <contact type="STRUCTURE" name="NOSE">
+           <location unit="IN">
+             <x> 0 </x>
+             <y> 0 </y>
+             <z> -10.2 </z>
+           </location>
+           <static_friction>  0.80 </static_friction>
+           <dynamic_friction> 0.50 </dynamic_friction>
+           <spring_coeff unit="LBS/FT">       10000 </spring_coeff>
+           <damping_coeff unit="LBS/FT/SEC">  3000 </damping_coeff>
+        </contact>
+        <contact type="BOGEY" name="NOSE_LG">
+            <location unit="IN">
+                <x> 0 </x>
+                <y> 0 </y>
+                <z> -36</z>
+            </location>
+            <static_friction> 0.8 </static_friction>
+            <dynamic_friction> 0.5 </dynamic_friction>
+            <rolling_friction> 0.02 </rolling_friction>
+            <spring_coeff unit="LBS/FT"> 1389.1 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 463.1 </damping_coeff>
+            <max_steer unit="DEG"> 40 </max_steer>
+            <brake_group> LEFT </brake_group>
+            <retractable>1</retractable>
+        </contact>
+        <contact type="BOGEY" name="LEFT_MLG">
+            <location unit="IN">
+                <x> 172.2 </x>
+                <y> -61.4 </y>
+                <z> -26</z>
+            </location>
+            <static_friction> 0.8 </static_friction>
+            <dynamic_friction> 0.5 </dynamic_friction>
+            <rolling_friction> 0.02 </rolling_friction>
+            <spring_coeff unit="LBS/FT"> 4630.5 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 926.1 </damping_coeff>
+            <max_steer unit="DEG"> 0.0 </max_steer>
+            <brake_group> LEFT </brake_group>
+            <retractable>1</retractable>
+        </contact>
+        <contact type="BOGEY" name="RIGHT_MLG">
+            <location unit="IN">
+                <x> 172.2 </x>
+                <y> 61.4 </y>
+                <z> -26</z>
+            </location>
+            <static_friction> 0.8 </static_friction>
+            <dynamic_friction> 0.5 </dynamic_friction>
+            <rolling_friction> 0.02 </rolling_friction>
+            <spring_coeff unit="LBS/FT"> 4630.5 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 926.1 </damping_coeff>
+            <max_steer unit="DEG"> 0.0 </max_steer>
+            <brake_group> RIGHT </brake_group>
+            <retractable>1</retractable>
+        </contact>
+
+        <contact type="STRUCTURE" name="LEFT_WING">
+           <location unit="IN">
+             <x> 164.16 </x>
+             <y> -17.06 </y>
+             <z> -10.26 </z>
+           </location>
+           <static_friction>  0.80 </static_friction>
+           <dynamic_friction> 0.50 </dynamic_friction>
+           <spring_coeff unit="LBS/FT">       10000 </spring_coeff>
+           <damping_coeff unit="LBS/FT/SEC">  3000 </damping_coeff>
+        </contact>
+        <contact type="STRUCTURE" name="RIGHT_WING">
+          <location unit="IN">
+             <x> 164.16 </x>
+             <y>  17.06 </y>
+             <z> -10.26 </z>
+           </location>
+           <static_friction>  0.80 </static_friction>
+           <dynamic_friction> 0.50 </dynamic_friction>
+           <spring_coeff unit="LBS/FT">       10000 </spring_coeff>
+           <damping_coeff unit="LBS/FT/SEC">  3000 </damping_coeff>
+        </contact>
+    </ground_reactions>
+    
+    <propulsion>
+        <engine file="Horse-Power">
+            <location unit="IN">
+                <x> 36 </x>
+                <y> 0 </y>
+                <z> 0 </z>
+            </location>
+            <orient unit="DEG">
+                <roll> 0.0 </roll>
+                <pitch> 0 </pitch>
+                <yaw> 0 </yaw>
+            </orient>
+            <feed>0</feed>
+            <thruster file="direct">
+                <location unit="IN">
+                    <x> 36 </x>
+                    <y> 0 </y>
+                    <z> 0 </z>
+                </location>
+                <orient unit="DEG">
+                    <roll> 0.0 </roll>
+                    <pitch> 0.0 </pitch>
+                    <yaw> 0.0 </yaw>
+                </orient>
+            </thruster>
+        </engine>
+        
+        <tank type="FUEL" number="0">
+            <location unit="IN">
+                <x> 0 </x>
+                <y> 0 </y>
+                <z> 0 </z>
+            </location>
+            <capacity unit="LBS"> 1000 </capacity>
+            <contents unit="LBS"> 500 </contents>
+        </tank>
+    </propulsion>  
+
+
+    <aerodynamics>
+
+        <axis name="DRAG">
+            <function name="aero/coefficient/CD0">
+                <description>Drag_at_zero_lift</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                      <table>
+                          <independentVar>aero/alpha-rad</independentVar>
+                          <tableData>
+                              -1.5700	1.5000
+                              -0.2600	0.0400
+                              0.0000	0.0200
+                              0.2600	0.0400
+                              1.5700	1.5000
+                          </tableData>
+                      </table>
+                </product>
+            </function>
+            <function name="aero/coefficient/CDi">
+                <description>Induced_drag</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>aero/cl-squared</property>
+                    <value>0.0450</value>
+                </product>
+            </function>
+            <function name="aero/coefficient/CDmach">
+                <description>Drag_due_to_mach</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                      <table>
+                          <independentVar>velocities/mach</independentVar>
+                          <tableData>
+                              0.0000	0.0000
+                              0.7300	0.0000
+                              1.1000	0.0230
+                              1.8000	0.0150
+                          </tableData>
+                      </table>
+                </product>
+            </function>
+        </axis>
+    </aerodynamics>
+
+  <system file="crash-test"/>
+
+</fdm_config>

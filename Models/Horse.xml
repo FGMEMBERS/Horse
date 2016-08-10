@@ -1,0 +1,476 @@
+<?xml version="1.0"?>
+<!--###################################################################################
+		Lake of Constance Hangar :: M.Kraus
+		Horse for Flightgear August 2016
+		This file is licenced under the terms of the GNU General Public Licence V2 or later
+		###################################################################################
+-->
+<PropertyList>
+ <path>horse.ac</path>
+
+	<offsets>
+		<z-m>-0.5</z-m>
+	</offsets>
+
+	<animation>
+		<enable-hot type="bool">false</enable-hot>
+	</animation>
+
+  <!-- Nasal code -->
+	<nasal>
+		<load>
+      var livery_update = aircraft.livery_update.new("Aircraft/Horse/Models/Liveries",10);
+		</load>
+		<unload>
+      livery_update.stop();
+		</unload>
+ </nasal> 
+
+  <animation>
+    <type>material</type>
+    <object-name>head</object-name>
+    <object-name>neck</object-name>
+    <object-name>chest</object-name>
+    <object-name>head.001</object-name>
+    <object-name>neck.001</object-name>
+    <object-name>chest.001</object-name>
+    <object-name>pelvic</object-name>
+    <object-name>tail</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>texture</texture-prop>
+    <texture>white.png</texture>
+  </animation>
+
+  <animation>
+    <object-name>wake</object-name>
+  </animation>
+
+  <!-- shake all on walking -->
+  <animation>
+    <type>translate</type>
+    <object-name>head</object-name>
+    <object-name>neck</object-name>
+    <object-name>chest</object-name>
+    <object-name>head.001</object-name>
+    <object-name>neck.001</object-name>
+    <object-name>chest.001</object-name>
+    <object-name>pelvic</object-name>
+    <object-name>tail</object-name>  
+    <property>engines/engine[1]/rpm</property>
+    <interpolation>
+      <entry><ind>   0</ind><dep> 0.0</dep></entry>
+      <entry><ind> 0.1</ind><dep>0.01</dep></entry>
+      <entry><ind> 0.2</ind><dep>0.02</dep></entry>
+      <entry><ind> 0.3</ind><dep>0.03</dep></entry>
+      <entry><ind> 0.4</ind><dep>0.04</dep></entry>
+      <entry><ind> 0.5</ind><dep>0.05</dep></entry>
+      <entry><ind> 0.6</ind><dep>0.06</dep></entry>
+      <entry><ind> 0.7</ind><dep>0.07</dep></entry>
+      <entry><ind> 0.8</ind><dep>0.06</dep></entry>
+      <entry><ind> 0.9</ind><dep>0.05</dep></entry>
+      <entry><ind> 1.0</ind><dep>0.04</dep></entry>
+      <entry><ind> 1.1</ind><dep>0.03</dep></entry>      
+      <entry><ind> 1.2</ind><dep>0.02</dep></entry>
+      <entry><ind> 1.3</ind><dep>0.01</dep></entry>
+      <entry><ind> 1.4</ind><dep>0.01</dep></entry>
+    </interpolation>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>1</z>
+    </axis>
+  </animation>
+
+  <animation>
+  <type>select</type>
+    <object-name>head</object-name>
+    <object-name>neck</object-name>
+    <object-name>chest</object-name>
+    <object-name>pelvic</object-name>
+    <object-name>tail</object-name>
+    <condition>
+      <equals>
+        <property>sim/multiplay/generic/int[0]</property>
+        <value type="bool">0</value>
+      </equals>
+    </condition>
+  </animation>
+
+  <animation>
+  <type>select</type>
+    <object-name>head.001</object-name>
+    <object-name>neck.001</object-name>
+    <object-name>chest.001</object-name>
+    <object-name>wake</object-name>
+    <condition>
+      <equals>
+        <property>sim/multiplay/generic/int[0]</property>
+        <value type="bool">1</value>
+      </equals>
+    </condition>
+  </animation>
+
+  <!-- animate the dust -->
+	<model>
+		<path>Aircraft/Horse/Models/dust.xml</path>
+		<name>dust</name>
+		<offsets>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+			<heading-deg>0</heading-deg>
+		</offsets>
+	</model>
+
+  <animation>
+  <type>select</type>
+    <object-name>dust</object-name>
+    <condition>
+      <and>
+        <property>sim/multiplay/generic/float[0]</property>
+        <not>
+          <property>sim/crashed</property>
+        </not>
+        <equals>
+          <property>sim/multiplay/generic/int[0]</property>
+          <value>0</value>
+        </equals>
+      </and>
+    </condition>
+  </animation>
+
+  <!-- animate the shadow -->
+	<model>
+		<path>Aircraft/Horse/Models/shadow.xml</path>
+		<name>shadow</name>
+		<offsets>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0.05</z-m>
+			<heading-deg>0</heading-deg>
+		</offsets>
+	</model>
+
+  <animation>
+  <type>select</type>
+    <object-name>shadow</object-name>
+    <condition>
+      <not>
+        <property>sim/crashed</property>
+      </not>
+      <less-than>
+        <property>sim/multiplay/generic/float[1]</property>
+        <value>2</value>      
+      </less-than>
+    </condition>
+  </animation>
+
+  <!-- let the music play -->
+  <animation>
+      <type>pick</type>
+      <object-name>head</object-name>
+      <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <command>property-toggle</command>
+            <property>/controls/special/singthesong</property>
+        </binding>
+      </action>
+  </animation>
+  
+  <!-- calm your horse -->
+  <animation>
+      <type>pick</type>
+      <object-name>neck</object-name>
+      <object-name>neck.001</object-name>
+      <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <command>property-toggle</command>
+            <property>/controls/special/push-me</property>
+        </binding>
+      </action>
+  </animation>
+
+  <!-- stand -->
+	<model>
+		<path>Aircraft/Horse/Models/stand.xml</path>
+		<name>stand</name>
+		<offsets>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+			<heading-deg>0</heading-deg>
+		</offsets>
+	</model>
+
+  <animation>
+  <type>select</type>
+    <object-name>stand</object-name>
+    <condition>
+      <and>
+        <equals>
+          <property>sim/multiplay/generic/float[0]</property>
+          <value>0.0</value>
+        </equals>
+        <equals>
+          <property>sim/multiplay/generic/int[0]</property>
+          <value type="bool">0</value>
+        </equals>
+      </and>
+    </condition>
+  </animation>
+
+  <!-- walk -->
+	<model>
+		<path>Aircraft/Horse/Models/walk.xml</path>
+		<name>walk</name>
+		<offsets>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+			<heading-deg>0</heading-deg>
+		</offsets>
+	</model>
+
+  <animation>
+  <type>select</type>
+    <object-name>walk</object-name>
+    <condition>
+      <and>
+        <equals>
+          <property>sim/multiplay/generic/float[0]</property>
+          <value>1.0</value>
+        </equals>
+        <equals>
+          <property>sim/multiplay/generic/int[0]</property>
+          <value type="bool">0</value>
+        </equals>
+      </and>
+    </condition>
+  </animation>
+
+  <!-- trot -->
+	<model>
+		<path>Aircraft/Horse/Models/trot.xml</path>
+		<name>trot</name>
+		<offsets>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+			<heading-deg>0</heading-deg>
+		</offsets>
+	</model>
+
+  <animation>
+  <type>select</type>
+    <object-name>trot</object-name>
+    <condition>
+      <and>
+        <equals>
+          <property>sim/multiplay/generic/float[0]</property>
+          <value>2.0</value>
+        </equals>
+        <equals>
+          <property>sim/multiplay/generic/int[0]</property>
+          <value type="bool">0</value>
+        </equals>
+      </and>
+    </condition>
+  </animation>
+
+  <!-- galopp -->
+	<model>
+		<path>Aircraft/Horse/Models/galopp.xml</path>
+		<name>galopp</name>
+		<offsets>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+			<heading-deg>0</heading-deg>
+		</offsets>
+	</model>
+
+  <animation>
+  <type>select</type>
+    <object-name>galopp</object-name>
+    <condition>
+      <and>
+        <equals>
+          <property>sim/multiplay/generic/float[0]</property>
+          <value>3.0</value>
+        </equals>
+        <equals>
+          <property>sim/multiplay/generic/int[0]</property>
+          <value type="bool">0</value>
+        </equals>
+      </and>
+    </condition>
+  </animation>
+
+  <!-- jump -->
+	<model>
+		<path>Aircraft/Horse/Models/jump.xml</path>
+		<name>jump</name>
+		<offsets>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+			<heading-deg>0</heading-deg>
+		</offsets>
+	</model>
+
+  <animation>
+  <type>select</type>
+    <object-name>jump</object-name>
+    <condition>
+      <equals>
+        <property>sim/multiplay/generic/float[0]</property>
+        <value>4.0</value>
+      </equals>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>head</object-name>
+    <!-- is not a real rpm, see Horse/Nasal/horse.nas -->
+    <property>engines/engine[1]/rpm</property>
+    <interpolation>
+      <entry><ind>  0.0  </ind><dep> 0 </dep></entry>
+      <entry><ind>  0.2  </ind><dep> 2 </dep></entry>
+      <entry><ind>  0.4  </ind><dep> 4 </dep></entry>
+      <entry><ind>  0.6  </ind><dep> 6 </dep></entry>
+      <entry><ind>  0.8  </ind><dep> 8 </dep></entry>
+      <entry><ind>  1.0  </ind><dep> 6 </dep></entry>
+      <entry><ind>  1.2  </ind><dep> 4 </dep></entry>
+      <entry><ind>  1.4  </ind><dep> 2 </dep></entry>
+    </interpolation> 
+    <center>
+      <x-m>-0.873 </x-m>
+      <y-m> 0.0 </y-m>
+      <z-m> 1.956 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>head</object-name>    
+    <object-name>neck</object-name>
+    <!-- is not a real rpm, see Horse/Nasal/horse.nas -->
+    <property>engines/engine[1]/rpm</property>
+    <interpolation>
+      <entry><ind>  0.0  </ind><dep>  0 </dep></entry>
+      <entry><ind>  0.2  </ind><dep> -1 </dep></entry>
+      <entry><ind>  0.4  </ind><dep> -2 </dep></entry>
+      <entry><ind>  0.6  </ind><dep> -3 </dep></entry>
+      <entry><ind>  0.8  </ind><dep> -4 </dep></entry>
+      <entry><ind>  1.0  </ind><dep> -3 </dep></entry>
+      <entry><ind>  1.2  </ind><dep> -2 </dep></entry>
+      <entry><ind>  1.4  </ind><dep> -1 </dep></entry>
+    </interpolation> 
+    <center>
+      <x-m>-0.113 </x-m>
+      <y-m> 0.0 </y-m>
+      <z-m> 1.426 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>tail</object-name>
+    <!-- is not a real rpm, see Horse/Nasal/horse.nas -->
+    <property>engines/engine[1]/rpm</property>
+    <interpolation>
+      <entry><ind>  0.0  </ind><dep>  0 </dep></entry>
+      <entry><ind>  0.2  </ind><dep> -5 </dep></entry>
+      <entry><ind>  0.4  </ind><dep> -10 </dep></entry>
+      <entry><ind>  0.6  </ind><dep> -15 </dep></entry>
+      <entry><ind>  0.8  </ind><dep> -20 </dep></entry>
+      <entry><ind>  1.0  </ind><dep> -15 </dep></entry>
+      <entry><ind>  1.2  </ind><dep> -10 </dep></entry>
+      <entry><ind>  1.4  </ind><dep> -5 </dep></entry>
+    </interpolation> 
+    <center>
+      <x-m> 1.018 </x-m>
+      <y-m> 0.0 </y-m>
+      <z-m> 1.55 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <!-- horse is swimming -->
+  <animation>
+    <type>rotate</type>
+    <object-name>head.001</object-name>
+    <!-- is not a real rpm, see Horse/Nasal/horse.nas -->
+    <property>engines/engine[1]/rpm</property>
+    <interpolation>
+      <entry><ind>  0.0  </ind><dep> 0 </dep></entry>
+      <entry><ind>  0.2  </ind><dep> 3 </dep></entry>
+      <entry><ind>  0.4  </ind><dep> 6 </dep></entry>
+      <entry><ind>  0.6  </ind><dep> 9 </dep></entry>
+      <entry><ind>  0.8  </ind><dep> 12 </dep></entry>
+      <entry><ind>  1.0  </ind><dep> 9 </dep></entry>
+      <entry><ind>  1.2  </ind><dep> 6 </dep></entry>
+      <entry><ind>  1.4  </ind><dep> 3 </dep></entry>
+    </interpolation> 
+    <center>
+      <x-m>-0.859 </x-m>
+      <y-m> 0.0 </y-m>
+      <z-m> 0.427 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>head.001</object-name>    
+    <object-name>neck.001</object-name>
+    <!-- is not a real rpm, see Horse/Nasal/horse.nas -->
+    <property>engines/engine[1]/rpm</property>
+    <interpolation>
+      <entry><ind>  0.0  </ind><dep>  0 </dep></entry>
+      <entry><ind>  0.2  </ind><dep> -2 </dep></entry>
+      <entry><ind>  0.4  </ind><dep> -4 </dep></entry>
+      <entry><ind>  0.6  </ind><dep> -6 </dep></entry>
+      <entry><ind>  0.8  </ind><dep> -8 </dep></entry>
+      <entry><ind>  1.0  </ind><dep> -6 </dep></entry>
+      <entry><ind>  1.2  </ind><dep> -4 </dep></entry>
+      <entry><ind>  1.4  </ind><dep> -2 </dep></entry>
+    </interpolation> 
+    <center>
+      <x-m>-0.451 </x-m>
+      <y-m> 0.0 </y-m>
+      <z-m> 0.149 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+
+</PropertyList>
+ 

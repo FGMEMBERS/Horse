@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--###################################################################################
+		Lake of Constance Hangar :: M.Kraus
+		Horse for Flightgear August 2016
+		This file is licenced under the terms of the GNU General Public Licence V2 or later
+		###################################################################################
+-->
+<system name="crash-test">
+
+  <channel name="crashed">
+
+     <!-- end the sim if the horse is crashed -->
+     <switch name="systems/crash-test/FG">
+        <test value="1">
+           systems/crash-test/crashed == 1
+        </test>
+        <output>/sim/freeze/clock</output>
+        <output>/sim/freeze/main</output>
+        <output>/controls/engines/engine[0]/cutoff</output>
+        <output>/sim/crashed</output>
+     </switch>
+  
+  </channel>
+
+  <channel name="impact-ground">
+
+     <switch name="impact">
+          <test value="1">
+                position/h-agl-ft gt 44.0  <!-- Zurich Parking Deck is 42ft -->
+          </test>
+          <output>systems/crash-test/crashed</output>
+          <output>systems/crash-test/impact </output>
+     </switch>
+
+  </channel>
+
+</system>
