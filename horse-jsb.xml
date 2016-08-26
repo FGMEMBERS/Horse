@@ -1,5 +1,10 @@
 <?xml version="1.0"?>
-
+<!--###################################################################################
+		Lake of Constance Hangar :: M.Kraus
+		Horse for Flightgear August 2016
+		This file is licenced under the terms of the GNU General Public Licence V2 or later
+		###################################################################################
+-->
 <?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
 
 <fdm_config name="Horse" version="2.0" release="BETA"
